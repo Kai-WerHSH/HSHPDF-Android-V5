@@ -229,7 +229,7 @@ class FontePdf(caminho: String) : Fonte() {
             }
             val s = larguraPx / (b.x1 - b.x0)
             val ctm = Matrix(s, 0f, 0f, s, -b.x0 * s, -b.y0 * s)
-            val pix = pagina.toPixmap(ctm, ColorSpace.DeviceRGB, false, true)
+            val pix = pagina.toPixmap(ctm, ColorSpace.DeviceRGB, false)
             try {
                 return paraBitmap(pix)
             } finally {
