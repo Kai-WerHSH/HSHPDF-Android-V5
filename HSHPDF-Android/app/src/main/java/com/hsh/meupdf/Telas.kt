@@ -1,5 +1,4 @@
 // Criador da fonte: Henrique de Souza Henrique
-// Coautor e assistente de IA: Claude (Anthropic)
 package com.hsh.meupdf
 
 import androidx.compose.foundation.background
@@ -128,6 +127,5 @@ fun AjustesTela(
         if (!podeLimpar) Text("Feche o leitor para limpar o cache.", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.height(16.dp))
         Text("HSHPDF", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground)
-        Text("Criador da fonte: Henrique de Souza Henrique\nCoautor e assistente de IA: Claude (Anthropic)", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
