@@ -1,0 +1,45 @@
+name: Compilar APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Configurar Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Remover créditos de IA do código compilado
+        shell: bash
+        run: |
+          find HSHPDF-Android -type f \( -name '*.kt' -o -name '*.kts' -o -name '*.xml' -o -name '*.md' \) -print0 | xargs -0 sed -i -E '/Claude \(Anthropic\)/d; /Coautor e assistente de IA/d'
+          sed -i 's/\nCoautor e assistente de IA: Claude (Anthropic)//g' HSHPDF-Android/app/src/main/java/com/hsh/meupdf/Telas.kt
+
+      - name: Compilar APK
+        working-directory: HSHPDF-Android
+        run: gradle assembleDebug --no-daemon
+
+      - name: Publicar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: HSHPDF-V5-apk
+          path: HSHPDF-Android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
