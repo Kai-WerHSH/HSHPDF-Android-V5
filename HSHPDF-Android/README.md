@@ -1,8 +1,6 @@
 # HSHPDF para Android (nativo: Kotlin + Jetpack Compose + MuPDF)
 
 **Criador da fonte:** Henrique de Souza Henrique
-**Coautor e assistente de IA:** Claude (Anthropic)
-
 ## Versão 0.5 — o app agora faz só duas coisas, bem feitas
 1. **Ler** PDF, CBZ, CBR e EPUB de forma fluida.
 2. **Criar** CBZ, PDF, ZIP e EPUB a partir de imagens de qualquer tipo.
@@ -39,7 +37,7 @@
 3. Baixe o artefato **HSHPDF-apk** > `app-debug.apk` e instale por cima da versão atual.
 
 ## Se a compilação falhar
-Escrito sem poder compilar no ambiente de criação. Abra a execução ❌ > passo vermelho > copie as linhas que começam com `e:` e envie ao Claude.
+Escrito sem poder compilar no ambiente de criação. Abra a execução ❌ > passo vermelho > copie as linhas que começam com `e:` e envie para análise e correção.
 
 ## Limitações atuais
 - Sem busca de texto dentro dos documentos (foi retirada para focar em leitura e criação; pode voltar).
