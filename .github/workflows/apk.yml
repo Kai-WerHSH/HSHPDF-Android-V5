@@ -26,11 +26,14 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Remover créditos de IA do código compilado
+      - name: Remover créditos antigos
         shell: bash
         run: |
-          find HSHPDF-Android -type f \( -name '*.kt' -o -name '*.kts' -o -name '*.xml' -o -name '*.md' \) -print0 | xargs -0 sed -i -E '/Claude \(Anthropic\)/d; /Coautor e assistente de IA/d'
-          sed -i 's/\nCoautor e assistente de IA: Claude (Anthropic)//g' HSHPDF-Android/app/src/main/java/com/hsh/meupdf/Telas.kt
+          find HSHPDF-Android -type f \( -name '*.kt' -o -name '*.kts' -o -name '*.xml' -o -name '*.md' \) -print0 | xargs -0 sed -i '/assistente de IA/d'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add HSHPDF-Android
+          git diff --cached --quiet || (git commit -m "Remove créditos antigos do projeto" && git push)
 
       - name: Compilar APK
         working-directory: HSHPDF-Android
